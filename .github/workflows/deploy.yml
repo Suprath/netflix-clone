@@ -67,7 +67,7 @@ jobs:
 
   deploy_test:
     needs: build_and_test
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     
     steps:
@@ -85,7 +85,7 @@ jobs:
 
   deploy_staging:
     needs: build_and_test
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     
     steps:
@@ -103,7 +103,7 @@ jobs:
 
   deploy_production:
     needs: build_and_test
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
     
     steps:
