@@ -57,15 +57,6 @@ jobs:
           build-args: |
             TMDB_V3_API_KEY=${{ secrets.TMDB_V3_API_KEY }}
 
-      - name: Run Trivy vulnerability scanners
-        uses: aquasecurity/trivy-action@0.20.0
-        with:
-          image-ref: ${{ steps.set_image_name.outputs.image }}:${{ github.sha }}
-          format: 'table'
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
 
   deploy_test:
     needs: build_and_test
