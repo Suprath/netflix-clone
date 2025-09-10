@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: netflix-clone-app
-        image: ghcr.io/your-github-username/netflix-clone-react-typescript:latest # Placeholder
+        image: ghcr.io/your-github-username/netflix-clone:latest # Placeholder
         ports:
         - containerPort: 80
         env:
