@@ -80,8 +80,8 @@ jobs:
         run: |
           echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
           export KUBECONFIG=./kubeconfig.yaml
-          microk8s kubectl apply -k k8s/overlays/test
-          microk8s kubectl -n test set image deployment/netflix-clone-app netflix-clone-app=${{ needs.build_and_test.outputs.image_name }}:${{ github.sha }}
+          kubectl apply -k k8s/overlays/test
+          kubectl -n test set image deployment/netflix-clone-app netflix-clone-app=${{ needs.build_and_test.outputs.image_name }}:${{ github.sha }}
 
   deploy_staging:
     needs: build_and_test
@@ -98,8 +98,8 @@ jobs:
         run: |
           echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
           export KUBECONFIG=./kubeconfig.yaml
-          microk8s kubectl apply -k k8s/overlays/staging
-          microk8s kubectl -n staging set image deployment/netflix-clone-app netflix-clone-app=${{ needs.build_and_test.outputs.image_name }}:${{ github.sha }}
+          kubectl apply -k k8s/overlays/staging
+          kubectl -n staging set image deployment/netflix-clone-app netflix-clone-app=${{ needs.build_and_test.outputs.image_name }}:${{ github.sha }}
 
   deploy_production:
     needs: build_and_test
@@ -116,5 +116,5 @@ jobs:
         run: |
           echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
           export KUBECONFIG=./kubeconfig.yaml
-          microk8s kubectl apply -k k8s/overlays/production
-          microk8s kubectl -n production set image deployment/netflix-clone-app netflix-clone-app=${{ needs.build_and_test.outputs.image_name }}:${{ github.sha }}
+          kubectl apply -k k8s/overlays/production
+          kubectl -n production set image deployment/netflix-clone-app netflix-clone-app=${{ needs.build_and_test.outputs.image_name }}:${{ github.sha }}
